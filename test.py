@@ -1,8 +1,4 @@
 # -*- coding:utf-8 -*-
-"""
-作者：张亦严
-日期:2022年09月22日
-"""
 from sklearn.metrics import confusion_matrix, accuracy_score, classification_report, cohen_kappa_score
 import torch
 import time
