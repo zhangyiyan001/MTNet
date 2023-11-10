@@ -1,8 +1,4 @@
 # -*- coding:utf-8 -*-
-"""
-作者：张亦严
-日期:2022年09月22日
-"""
 import torch
 import torch.optim as optim
 import time
@@ -15,7 +11,6 @@ def train_hsi_lidar(dataset, train_iter, test_iter, device, epoches, ITER, TRAIN
     for index_iter in range(ITER):
         train_loss_list = []
         train_acc_list = []
-        #net_hsi = Hsi_spec(windows=13, channel=30, class_num=15, dim=30, depth=2, heads=4, dim_head=64, dropout=0.1).to(device)
         net = MTNet(channels=144,
                     num_patches=81,
                     dim=144,
