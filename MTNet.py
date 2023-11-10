@@ -1,8 +1,4 @@
 # -*- coding:utf-8 -*-
-"""
-作者：张亦严
-日期:2022年10月19日
-"""
 import torch
 from einops import rearrange
 from einops.layers.torch import Rearrange
@@ -180,31 +176,3 @@ class Cross_ViT(nn.Module):
 
         return x1, x2
 
-class Hsi_spec(nn.Module):
-    def __init__(self, channel, class_num, dim, depth, heads, dim_head, dropout):
-        super(Hsi_spec, self).__init__()
-        self.conv1 = nn.Sequential(nn.Conv1d(in_channels=1, out_channels=30, kernel_size=3, padding=1),
-                                   nn.BatchNorm1d(30),
-                                   nn.ReLU(inplace=True))
-        self.trans_hsi = Cross_ViT(
-                                   channel=channel,
-                                   num_patches=30,
-                                   dim=dim,
-                                   depth=depth,
-                                   heads=heads,
-                                   dim_head=dim_head,
-                                   dropout=dropout)
-        self.linear = nn.Linear(dim, class_num)
-
-
-    def forward(self, x): #(16, 1, 144)
-        x = self.conv1(x)
-        x = self.trans_hsi(x)
-        x = self.linear(x)
-        return x
-
-x1 = torch.randn(16, 1, 144)
-
-# net = Hsi_spec(channel=144, class_num=15, dim=30, depth=2, heads=8, dim_head=64, dropout=0.1)
-# out = net(x)
-# print(out.shape)
