@@ -1,8 +1,4 @@
 # -*- coding:utf-8 -*-
-"""
-作者：张亦严
-日期:2022年09月22日
-"""
 import numpy as np
 import scipy.io as sio
 import os
