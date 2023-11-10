@@ -1,8 +1,4 @@
 # -*- coding:utf-8 -*-
-"""
-作者：张亦严
-日期:2022年10月13日
-"""
 import torch
 from einops import rearrange
 from einops.layers.torch import Rearrange
