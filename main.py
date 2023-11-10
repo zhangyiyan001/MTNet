@@ -1,8 +1,4 @@
 # -*- coding:utf-8 -*-
-"""
-作者：张亦严
-日期:2022年09月22日
-"""
 import torch
 from dataset import load_data, generater, normalize, setup_seed, applyPCA
 from train_hsi_lidar import train_hsi_lidar
