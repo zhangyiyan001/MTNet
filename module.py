@@ -1,8 +1,4 @@
 # -*- coding:utf-8 -*-
-"""
-作者：张亦严
-日期:2022年09月22日
-"""
 import numpy as np
 from sklearn.model_selection import train_test_split
 import random
