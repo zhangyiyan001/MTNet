@@ -48,10 +48,6 @@ def GetImageCubes_all(input_data, pixels_select, windowSize=11):  # 这里的lab
     # print('input_data.shape:', input_data.shape)
     paddingdata = np.pad(input_data, ((30, 30), (30, 30), (0, 0)), "constant")  # 采用边缘值填充 [205, 205, 200]                 可以作为超参数
     paddinglabel = np.pad(pixels_select, ((30, 30), (30, 30)), "constant")  # 此处"constant"应改为"edge"
-    # 得到 label的 pixel坐标位置,去除背景元素
-    # print('paddingdata.shape:', paddingdata.shape)
-    # print('paddinglabel.shape:', paddinglabel.shape)
-    #pixel = np.where(paddinglabel != 0)  # pixel = np.where(label_select != 0)  ，这里的pixel是坐标数据，不是光谱数据
     y0 = np.ones((height, width))
     paddingx = np.pad(y0, ((30, 30), (30, 30)), "constant")  # 此处"constant"应改为"edge"
     pixel = np.where(paddingx != 0)
@@ -126,33 +122,3 @@ def AA_andEachClassAccuracy(confusion_matrix):
     average_acc = np.mean(each_acc)  #
     return np.round(each_acc, 4), average_acc
 
-def colormap(num_class, p):
-    if p == True:
-        # cdict = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#00FFFF', '#FF00FF', '#C0C0C0',
-        #          '#808080', '#800000', '#808000', '#008000', '#800080', '#008080', '#000080', '#FFA500', '#FFD700']
-        cdict = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF', '#C86400', '#00C864',
-                 '#6400C8', '#C80064', '#64C800', '#0064C8', '#964B4B', '#4B964B', '#4B4B96', '#FF6464']
-        return colors.ListedColormap(cdict, N=num_class)
-    else:
-        # cdict = ['#000000', '#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#00FFFF', '#FF00FF', '#C0C0C0', '#808080',
-        #         '#800000', '#808000', '#008000', '#800080', '#008080', '#000080', '#FFA500', '#FFD700']
-        cdict = ['#000000', '#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF', '#C86400', '#00C864',
-                 '#6400C8', '#C80064', '#64C800', '#0064C8', '#964B4B', '#4B964B', '#4B4B96', '#FF6464']
-        return colors.ListedColormap(cdict, N=num_class+1)
-
-def dis_groundtruth(dataset, num_class, gt, p):
-    '''plt.figure(title)
-    plt.title(title)'''
-    plt.imshow(gt, cmap=colormap(num_class, p))
-    # spectral.imshow(classes=gt)
-    '''plt.colorbar()'''
-    plt.xticks([])
-    plt.yticks([])
-    '''plt.gca().xaxis.set_major_locator(plt.NullLocator())
-    plt.gca().yaxis.set_major_locator(plt.NullLocator())
-    plt.subplots_adjust(top=1, bottom=0, left=0, right=1, hspace=0, wspace=0)'''
-    if p:
-        plt.savefig('./results/{}/{}.png'.format(dataset, dataset+'true'), dpi=1200, pad_inches=0.0)
-    else:
-        plt.savefig('./results/{}/{}.png'.format(dataset, dataset+'false'), dpi=1200, pad_inches=0.0)
-    plt.show()
