@@ -5,7 +5,7 @@
 """
 import torch
 from dataset import load_data, generater, normalize, setup_seed, applyPCA
-from train_hsi import train_hsi
+from train_hsi_lidar import train_hsi_lidar
 
 
 setup_seed(seed=2021)
@@ -24,7 +24,7 @@ TRAIN_SIZE, TEST_SIZE, TOTAL_SIZE, train_iter, test_iter, X_test = generater(HSI
                                                                      batch_size=64,
                                                                      windowSize=9)
 
-model = train_hsi(dataset=dataset,
+model = train_hsi_lidar(dataset=dataset,
                   train_iter=train_iter,
                   test_iter=test_iter,
                   device=device,
