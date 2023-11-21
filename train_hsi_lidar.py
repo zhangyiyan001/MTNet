@@ -17,7 +17,7 @@ def train_hsi_lidar(dataset, train_iter, test_iter, device, epoches, ITER, TRAIN
                     depth=2,
                     heads=2,
                     dim_head=32,
-                    mlp_dim=64,
+                    mlp_dim=32,
                     num_classes=15,
                     dropout=0.1).to(device)
         net.apply(weight_init)  # 网络权重初始化
