@@ -2,7 +2,7 @@
 ---------------------
 
 The code in this toolbox implements the "Multimodal Transformer Network for Hyperspectral and LiDAR Classification".
-
+![MTNet](https://github.com/zhangyiyan001/MTNet/blob/main/framework.png)
 Citation
 ---------------------
 
